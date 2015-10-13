@@ -3,14 +3,24 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
-	<display-name>FlightOrganizer</display-name>
+	<display-name>fly</display-name>
 	 <servlet>
-        <servlet-name>authenticate</servlet-name>
+        <servlet-name>login</servlet-name>
         <jsp-file>/front/login.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>authenticate</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <servlet-class>controller.Authenticator</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>authenticate</servlet-name>
+        <url-pattern>/authenticate</url-pattern>
     </servlet-mapping>
 </web-app>

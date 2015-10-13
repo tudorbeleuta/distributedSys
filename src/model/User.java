@@ -7,19 +7,33 @@ import javax.persistence.Id;
 @Entity
 public class User {
 
+	public User(String username, String password, String role) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.role = role;
+	}
+
 	@Id
-	private String id;
+	private int id;
 	private String username;
 	// TODO: encryption!
 	private String password;
-	private UserRole role;
+	private String role;
 
+	public int getId(){
+		return id;
+	}
+	public void setId(int id){
+		this.id=id;
+	}
+	
 	public String getUsername() {
 		return username;
 	}
 
 	public void setUsername(String username) {
-		username = username;
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -31,12 +45,12 @@ public class User {
 	}
 
 	public String getRole() {
-		return role.toString();
+		return role;
 	}
 
-	public void setRole(String role) throws Exception {
+	public void setRole(String role){
 
-		this.role = UserRole.valueOf(role);
+		this.role = role;
 	}
 
 }
