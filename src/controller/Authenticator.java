@@ -11,20 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.User;
+
 public class Authenticator extends HttpServlet{
 	
 	UserManager usrManager;
 	
 	public void init(ServletConfig config){
-		usrManager = new UserManager();
+		this.usrManager = new UserManager();
 	}
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
-		
-		HttpSession appSession=request.getSession();
-		ServletContext context=appSession.getServletContext();
+		User usr=usrManager.getUser(username, password);
+		if(usr!=null){
+			HttpSession appSession=request.getSession();
+			appSession.setAttribute("user", usr);
+			
+		}
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException{

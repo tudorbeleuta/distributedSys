@@ -13,6 +13,9 @@ public class User {
 		this.password = password;
 		this.role = role;
 	}
+	public User(){
+		
+	}
 
 	@Id
 	private int id;

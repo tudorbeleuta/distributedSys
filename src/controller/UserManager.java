@@ -1,8 +1,11 @@
 package controller;
 
+import java.util.List;
+
 import model.User;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -20,11 +23,10 @@ public class UserManager {
 	public boolean addUser(String username, String password, String role){
 		Session session=sessionFactory.openSession();
 		Transaction tx = null;
-		Integer employeeID = null;
 	      try{
 	         tx = session.beginTransaction();
 	         User newUser=new User(username, password, role);
-	         employeeID = (Integer) session.save(newUser); 
+	         session.save(newUser); 
 	         tx.commit();
 	      }catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();
@@ -36,6 +38,37 @@ public class UserManager {
 	      return true;
 	}
 	
+	
+	public User getUser(String username, String password){
+		Session session=sessionFactory.openSession();
+		Transaction tx = null;
+		User newUser=null;
+	      try{
+	         tx = session.beginTransaction();
+	         newUser= queryUser(username,password,session);
+	         tx.commit();
+	      }catch (HibernateException e) {
+	         if (tx!=null) tx.rollback();
+	         e.printStackTrace(); 
+	      }finally {
+	         session.close(); 
+	      }
+	      return newUser;
+	}
+	
+	private User checkUser( List<User> list){
+		 if(list.size()>0){
+        		 return list.get(0);
+        	 }
+		 return null;
+	}
+	
+	private User queryUser(String username, String password, Session session){
+		Query query = session.createQuery("from model.User where username = :usr and password = :psw");
+        query.setParameter("usr", username);
+        query.setParameter("psw", password);
+        return checkUser(query.list());
+	}
 
 	public static SessionFactory getSessionFactory() {
 		return sessionFactory;
