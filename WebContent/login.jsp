@@ -35,7 +35,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="authenticate" method="get" role="form" style="display: block;">
+								<form id="login-form" action="app/authenticate" method="get" role="form" style="display: block;">
 									<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 									</div>
@@ -63,7 +63,7 @@
 										</div>
 									</div>
 								</form>
-								<form id="register-form" action="authenticate" method="post" role="form" style="display: none;">
+								<form id="register-form" action="app/authenticate" method="post" role="form" style="display: none;">
 									<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 									</div>

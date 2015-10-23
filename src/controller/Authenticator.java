@@ -27,10 +27,10 @@ public class Authenticator extends HttpServlet{
 		if(usr!=null){
 			HttpSession appSession=request.getSession();
 			appSession.setAttribute("user", usr);
-			response.sendRedirect("front/mainPage.html");
+			response.sendRedirect("app/mainPage.html");
 		}
 		else{
-			response.sendRedirect("front/markup/LoginFail.html");
+			response.sendRedirect("app/markup/LoginFail.html");
 		}
 		return;
 	}
