@@ -2,9 +2,8 @@ package controller;
 
 import java.io.IOException;
 
-import javax.jws.WebService;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +27,12 @@ public class Authenticator extends HttpServlet{
 		if(usr!=null){
 			HttpSession appSession=request.getSession();
 			appSession.setAttribute("user", usr);
-			
+			response.sendRedirect("front/mainPage.html");
 		}
+		else{
+			response.sendRedirect("front/markup/LoginFail.html");
+		}
+		return;
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException{

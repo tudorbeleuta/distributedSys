@@ -15,6 +15,7 @@ public class UserManager {
 	
 	private static SessionFactory sessionFactory;
 	
+	@SuppressWarnings("deprecation")
 	public UserManager(){
 		setSessionFactory(new Configuration().configure().buildSessionFactory());
 	}
@@ -64,7 +65,7 @@ public class UserManager {
 	}
 	
 	private User queryUser(String username, String password, Session session){
-		Query query = session.createQuery("from model.User where username = :usr and password = :psw");
+		Query query = session.createQuery("FROM model.User WHERE username = :usr AND password = :psw");
         query.setParameter("usr", username);
         query.setParameter("psw", password);
         return checkUser(query.list());
