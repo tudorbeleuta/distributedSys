@@ -23,14 +23,15 @@ public class Authenticator extends HttpServlet{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
+		String path= request.getContextPath();
 		User usr=usrManager.getUser(username, password);
 		if(usr!=null){
 			HttpSession appSession=request.getSession();
 			appSession.setAttribute("user", usr);
-			response.sendRedirect("app/mainPage.html");
+			response.sendRedirect("mainPage.html");
 		}
 		else{
-			response.sendRedirect("app/markup/LoginFail.html");
+			response.sendRedirect("markup/LoginFail.html");
 		}
 		return;
 	}
