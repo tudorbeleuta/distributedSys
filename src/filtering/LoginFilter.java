@@ -37,7 +37,7 @@ public class LoginFilter implements Filter {
 			this.context.log("permission denied!");
 			if (request instanceof HttpServletRequest) {
 				HttpServletResponse resp = (HttpServletResponse) response;
-				resp.sendRedirect("app/markup/AdminPermissionDenied.html");
+				resp.sendRedirect("/FlightOrganizer/app/markup/AdminPermissionDenied.html");
 			}
 		}
 
