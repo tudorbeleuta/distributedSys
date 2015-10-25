@@ -34,7 +34,7 @@
 
 	<filter-mapping>
 		<filter-name>LoggingFilter</filter-name> <!-- mandatory -->
-		<url-pattern>/app/markup/logged/*</url-pattern> <!-- either url-pattern or servlet-name is mandatory -->
+		<url-pattern>/app/markup/logged/admin/*</url-pattern> <!-- either url-pattern or servlet-name is mandatory -->
 	</filter-mapping>
 
 </web-app>
